@@ -1,4 +1,4 @@
-# zenoh_manager
+# zenoh_manage_utils
 Launch zenoh node, get zenoh parameter.
 
 |test|status|
