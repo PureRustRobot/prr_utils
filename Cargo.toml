@@ -1,5 +1,5 @@
 [package]
-name = "zenoh_manager"
+name = "zenoh_manage_utils"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,4 +8,3 @@ edition = "2021"
 [dependencies]
 colored = "2.0.0"
 quick-xml = "0.31.0"
-async-std = "1.0"
