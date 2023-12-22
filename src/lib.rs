@@ -6,6 +6,7 @@ pub mod param;
 use quick_xml::reader::Reader;
 use std::io::BufReader;
 use std::fs::File;
+use colored::{self, Colorize};
 
 pub fn get_xml(path:String)->Reader<BufReader<File>>
 {
