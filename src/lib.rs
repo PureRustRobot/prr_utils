@@ -1,15 +1,2 @@
 pub mod launch;
 pub mod param;
-
-
-use quick_xml::reader::Reader;
-use std::io::BufReader;
-use std::fs::File;
-
-pub fn get_xml(path:String)->Reader<BufReader<File>>
-{
-    let mut reader = Reader::from_file(path).unwrap();
-    reader.trim_text(true);
-
-    reader
-}

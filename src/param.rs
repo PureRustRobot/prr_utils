@@ -1,34 +1,65 @@
-use quick_xml::events::Event;
-use quick_xml::reader::Reader;
-use std::io::BufReader;
-use std::fs::File;
+use std::fs;
+use yaml_rust::{Yaml, YamlLoader};
 
-pub fn get_param(mut reader:Reader<BufReader<File>>, name:&str)->String
+fn get_param(path:String, bin_name:&str)->Yaml
 {
-    let mut flg = false;
+    let file = fs::read_to_string(path);
+    let s = file.unwrap().to_string();
+    let docs = YamlLoader::load_from_str(&s).unwrap();
 
-    let mut buf = Vec::new();
+    let doc = &docs[0];
 
-    loop {
-        match reader.read_event_into(&mut buf) {
+    return doc["zenoh_params"][bin_name].clone()
+}
 
-            Ok(Event::Start(e)) => {
-                let elm_name = String::from_utf8(e.name().as_ref().to_vec()).unwrap();
-                if elm_name == name {
-                    flg = true
-                }
-            }
-
-            // テキストイベント
-            Ok(Event::Text(e)) => {
-                if flg {
-                    return e.unescape().unwrap().to_string();
-                }
-            }
-
-            // その他のイベントは何もしない
-            _ => (),
+pub fn get_str_param(path:String , bin_name:&str, key_name:&str, default:String)->String
+{
+    match get_param(path, bin_name)[key_name].as_str()
+    {
+        Some(value)=>{
+            return value.to_string()
+        },
+        None=>{
+            return default
         }
-        buf.clear();  // メモリ節約のためbufをクリアする
+    }
+}
+
+pub fn get_f64_param(path:String , bin_name:&str, key_name:&str, default:f64)->f64
+{
+    match get_param(path, bin_name)[key_name].as_f64()
+    {
+        Some(value)=>{
+            return value;
+        },
+        None =>{
+            return default;
+        }
+    }
+}
+
+pub fn get_i64_param(path:String , bin_name:&str, key_name:&str, default:i64)->i64
+{
+    match get_param(path, bin_name)[key_name].as_i64()
+    {
+        Some(value)=>{
+            return value;
+        },
+        None =>{
+            return default;
+        }
+    }
+}
+
+pub fn get_bool_param(path:String , bin_name:&str, key_name:&str, default:bool)->bool
+{
+    match get_param(path, bin_name)[key_name].as_bool()
+    {
+        Some(value)=>{
+            return value;
+        },
+        None =>{
+            return default;
+        }
     }
 }
