@@ -1,5 +1,5 @@
-use colored::{self, Colorize};
 use std::process::{Command, Stdio};
+use crate::logger::*;
 
 pub fn bin_launch(bin_name:&str, param_file:&str)
 {
@@ -17,10 +17,10 @@ pub fn bin_launch(bin_name:&str, param_file:&str)
 
     if status.success()
     {
-        println!("{}{}", "[LaunchSystem]Start ".bright_blue(), bin_name.bright_blue());
+        log_info(bin_name, "Start".to_string())
     }
     else
     {
-        println!("{}{}", "[LaunchSystem]Failed to Start ".bright_red(), bin_name.bright_red());
+        log_error(bin_name, "Failed to Start".to_string());
     }
 }
