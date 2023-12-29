@@ -1,7 +1,7 @@
 use std::fs;
 use yaml_rust::{Yaml, YamlLoader};
 
-fn get_param(path:&String, bin_name:&str)->Yaml
+fn get_param(path:&str, bin_name:&str)->Yaml
 {
     let file = fs::read_to_string(path);
     let s = file.unwrap().to_string();
