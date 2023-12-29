@@ -1,7 +1,7 @@
 use colored::{self, Colorize};
 use std::process::{Command, Stdio};
 
-pub async fn bin_launch(bin_name:&str, param_file:&str)
+pub fn bin_launch(bin_name:&str, param_file:&str)
 {
     let mut child = Command::new("cargo")
         .arg("run")
