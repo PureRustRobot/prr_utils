@@ -12,7 +12,7 @@ fn get_param(path:&String, bin_name:&str)->Yaml
     return doc["zenoh_params"][bin_name].clone()
 }
 
-pub fn get_str_param(path:&String , bin_name:&str, key_name:&str, default:String)->String
+pub fn get_str_param(path:&str , bin_name:&str, key_name:&str, default:String)->String
 {
     match get_param(path, bin_name)[key_name].as_str()
     {
@@ -25,7 +25,7 @@ pub fn get_str_param(path:&String , bin_name:&str, key_name:&str, default:String
     }
 }
 
-pub fn get_f64_param(path:&String , bin_name:&str, key_name:&str, default:f64)->f64
+pub fn get_f64_param(path:&str , bin_name:&str, key_name:&str, default:f64)->f64
 {
     match get_param(path, bin_name)[key_name].as_f64()
     {
@@ -38,7 +38,7 @@ pub fn get_f64_param(path:&String , bin_name:&str, key_name:&str, default:f64)->
     }
 }
 
-pub fn get_i64_param(path:&String , bin_name:&str, key_name:&str, default:i64)->i64
+pub fn get_i64_param(path:&str , bin_name:&str, key_name:&str, default:i64)->i64
 {
     match get_param(path, bin_name)[key_name].as_i64()
     {
@@ -51,7 +51,7 @@ pub fn get_i64_param(path:&String , bin_name:&str, key_name:&str, default:i64)->
     }
 }
 
-pub fn get_bool_param(path:&String , bin_name:&str, key_name:&str, default:bool)->bool
+pub fn get_bool_param(path:&str , bin_name:&str, key_name:&str, default:bool)->bool
 {
     match get_param(path, bin_name)[key_name].as_bool()
     {
