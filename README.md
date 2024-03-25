@@ -1,5 +1,4 @@
-# zenoh_manage_utils
-Launch zenoh node, get zenoh parameter.
+# prr_utils
 
 |test|status|
 |:--:|:--:|
